@@ -6,7 +6,7 @@ $app->get('/put', function($request, $response){
 
 // 4. Update all patient
 
-// $app->put('/patients/{id}', function ($request, $response, array $args) {
+// $app->put('/patients/all/{id}', function ($request, $response, array $args) {
 //     $id = $request->getAttribute('id');
 
 //     $age = $request->getParam('age');
@@ -28,7 +28,7 @@ $app->get('/put', function($request, $response){
 //     try {
 //         $db = new db();
 //         $pdo = $db->connect();
-//         $sql = "UPDATE patients SET name = ?, age=?, gender=?, occupation=?, marital-status =?, admission_date = ?, treatment_date= ?, ICU_admission_date = ? , discharge_date = ?, death_date = ?, admission_status = ?, ICU_status = ?, clinical_death_status = ?, discharge_status=? WHERE id=? ";
+//         $sql = "UPDATE patients SET name = ?, age=?, gender=?, occupation=?, marital_status =?, admission_date = ?, treatment_date= ?, ICU_admission_date = ? , discharge_date = ?, death_date = ?, admission_status = ?, ICU_status = ?, clinical_death_status = ?, discharge_status=? WHERE id=? ";
 
 //         $pdo->prepare($sql)->execute([$name, $age, $gender, $occupation, $marital_status, $admission_date, $treatment_date, $ICU_admission_date, $discharge_date, $death_date, $admission_status, $ICU_status, $clinical_death_status, $discharge_status, $id]);
 
@@ -52,11 +52,11 @@ $app->put('/patients/{id}', function ($request, $response, array $args) {
     try {
         $db = new db();
         $pdo = $db->connect();
-        $sql = "UPDATE patients SET name = ?, age=?, gender=?, occupation=?, marital-status =?WHERE id=? ";
+        $sql = "UPDATE patients SET name = ?, age=?, gender=?, occupation=?, marital_status =? WHERE id=? ";
 
         $pdo->prepare($sql)->execute([$name, $age, $gender, $occupation, $marital_status, $id]);
 
-        echo '{"notice": {"text": Patient ' . $name . ' has been updated successfully}}';
+        echo '{"notice": {"text": Patient ' . $name . '\'s details have been updated successfully}}';
         $pdo = null;
     } catch (\PDOException $e) {
         echo '{"error": {"text": ' . $e->getMessage() . '}}'; //catching error in DB
@@ -67,7 +67,8 @@ $app->put('/patients/{id}', function ($request, $response, array $args) {
 
 $app->put('/patients/status/{id}', function ($request, $response, array $args) {
     $id = $request->getAttribute('id');
-    
+    $name = $request->getParam('name');
+
     $admission_status = $request->getParam('admission_status');
     $ICU_status = $request->getParam('ICU_status');
     $clinical_death_status = $request->getParam('clinical_death_status');
@@ -80,7 +81,7 @@ $app->put('/patients/status/{id}', function ($request, $response, array $args) {
 
         $pdo->prepare($sql)->execute([$admission_status, $ICU_status, $clinical_death_status, $discharge_status, $id]);
 
-        echo '{"notice": {"text": Patient ' . $name . ' has been updated successfully}}';
+        echo '{"notice": {"text": Patient ' . $name . '\'s status have been updated successfully}}';
         $pdo = null;
     } catch (\PDOException $e) {
         echo '{"error": {"text": ' . $e->getMessage() . '}}'; //catching error in DB
