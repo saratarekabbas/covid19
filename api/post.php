@@ -1,4 +1,9 @@
 <?php
+
+$app->get('/post', function($request, $response){
+    return $response->getBody()->write("post works!");
+});
+
 // 1. Insert a new patient into the database
 $app->post('/patients', function ($request, $response, array $args) {
     $name = $request->getParam('name');
@@ -19,9 +24,9 @@ $app->post('/patients', function ($request, $response, array $args) {
     try {
         $db = new db();
         $pdo = $db->connect();
-        $sql = "INSERT INTO patients () VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO patients (name,age,gender,occupation,marital_status,admission_date,treatment_date,ICU_admission_date,discharge_date,death_date,admission_status,ICU_status,clinical_death_status,discharge_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        $pdo->prepare($sql)->execute([]);
+        $pdo->prepare($sql)->execute([$name, $age, $gender, $occupation, $marital_status, $admission_date, $treatment_date, $ICU_admission_date, $discharge_date, $death_date, $admission_status, $ICU_status, $clinical_death_status, $discharge_status]);
 
         // $response->getBody()->write('{"msg": {"resp": Patient' . $name . 'has been added to the patient's list}}');
         echo '{"msg": {"text": Patient ' . $name . ' has been added to the patient\'s list}}';

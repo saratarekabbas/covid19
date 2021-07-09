@@ -44,20 +44,4 @@
     "ICU_status":"1",
     "clinical_death_status":"1",
     "discharge_status":"0"
-},
-{
-    "name":"ss",
-    "age":"ss",
-    "gender":"s",
-    "occupation":"d",
-    "marital_status":"d",
-    "admission_date":"d",
-    "treatment_date":"d",
-    "ICU_admission_date":"",
-    "discharge_date":"",
-    "death_date":"",
-    "admission_status":"",
-    "ICU_status":"",
-    "clinical_death_status":"",
-    "discharge_status":""
 }]

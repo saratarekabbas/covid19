@@ -1,5 +1,9 @@
 <?php
 
+$app->get('/put', function($request, $response){
+    return $response->getBody()->write("put works!");
+});
+
 // 4. Update all patient
 
 // $app->put('/patients/{id}', function ($request, $response, array $args) {

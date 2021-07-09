@@ -3,6 +3,7 @@
     use \Psr\Http\Message\ResponseInterface as Response;
 
     require '../vendor/autoload.php';
+    require '../api/config/db.php';
 
     $app = new \Slim\App;
 
@@ -16,4 +17,3 @@
     require '../api/delete.php';
                 
     $app->run();
-?>

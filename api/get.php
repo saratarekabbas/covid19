@@ -1,4 +1,7 @@
 <?php
+$app->get('/get', function($request, $response){
+    return $response->getBody()->write("get works!");
+});
 
 // 2. GET All Patients
 $app->get('/patients', function ($request, $response, $args) {

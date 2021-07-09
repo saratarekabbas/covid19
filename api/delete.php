@@ -1,4 +1,7 @@
 <?php
+$app->get('/delete', function($request, $response){
+    return $response->getBody()->write("delete works!");
+});
 
 // 7. Delete patient by ID
 $app->delete('/delete/{id}', function ($request, $response, array $args) {
